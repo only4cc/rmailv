@@ -1,0 +1,30 @@
+{
+    // Utilizar IntelliSense para aprender acerca de los posibles atributos.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos 
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "perl",
+            "request": "launch",
+            "name": "Perl-Debug local",
+            "program": "${workspaceFolder}/${relativeFile}",
+            "exec": "perl",
+            "execArgs": [],
+            "root": "${workspaceRoot}/",
+            "inc": [],
+            "args": [],
+            "env": {},
+            "stopOnEntry": true
+        },
+        {
+            "type": "perl",
+            "request": "launch",
+            "name": "Perl-Debug remote",
+            "program": "${workspaceFolder}/${relativeFile}",
+            "root": "${workspaceRoot}/",
+            "stopOnEntry": true,
+            "port": 5000
+        }
+    ]
+}

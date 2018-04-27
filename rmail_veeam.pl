@@ -5,7 +5,7 @@
 # Objetivo       : Leer correos de Veeam B&R
 # Autor          : J.Trumper S.
 # Fecha          : 25-Abril-2018
-# Modificaciones : Falta tema password
+# Modificaciones : Falta tema password de la cuenta 
 
 use Net::IMAP::Simple;
 use Email::Simple;
@@ -117,4 +117,5 @@ sub alarma {
 
 END {
     $imap->quit;
+    print "terminando sesion.\n";
 }
