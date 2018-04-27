@@ -31,6 +31,7 @@ my $foldername  = $Config->{$account}->{forldername} ||'INBOX/veeam_alerts';
 my $user        = $Config->{$account}->{user} ||'jtrumper@e-contact.cl';
 my $pass        = 'Jt654321';
 
+print "conectandome al servidor de IMAP ...\n";
 my $imap = Net::IMAP::Simple->new( $host ) ||
                  die "No pude conectarme al IMAP: $Net::IMAP::Simple::errstr\n";
 
@@ -38,9 +39,12 @@ if(!$imap->login($user,$pass)){
     print STDERR "Login erroneo: " . $imap->errstr . "\n";
     exit(64);
 }
+print "conectado\n";
 
+print "seleccionado $foldername ...\n";
 my $nm = $imap->select($foldername);
- 
+
+print "revisando correos en $foldername ...\n"; 
 for(my $i = 1; $i <= $nm; $i++){
     print "Revisando ... ";
     if($imap->seen($i)){
