@@ -19,13 +19,14 @@ use Config::Tiny;
 use strict;
 use warnings;
 
-my $DEBUG = 1;
+my $DEBUG = 1;   # >0 Si incluye debug
 
 # Parametros en config.  ## Falta tema password
 my $Config = Config::Tiny->new;
 $Config = Config::Tiny->read( 'file.conf', 'utf8' );
 
-my $account='imap_acc_1';
+my $account     = shift || 'imap_acc_1';
+
 my $host        = $Config->{$account}->{host} ||'10.25.51.31';
 my $foldername  = $Config->{$account}->{forldername} ||'INBOX/veeam_alerts';
 my $user        = $Config->{$account}->{user} ||'jtrumper@e-contact.cl';
@@ -33,7 +34,7 @@ my $pass        = 'Jt654321';
 
 print "conectandome al servidor de IMAP ...\n";
 my $imap = Net::IMAP::Simple->new( $host ) ||
-                 die "No pude conectarme al IMAP: $Net::IMAP::Simple::errstr\n";
+                 die "No pude conectarme al IMAP\n[ $Net::IMAP::Simple::errstr ]\n";
 
 if(!$imap->login($user,$pass)){
     print STDERR "Login erroneo: " . $imap->errstr . "\n";
@@ -116,6 +117,6 @@ sub alarma {
 }
 
 END {
-    $imap->quit;
+    $imap->quit if $imap;
     print "terminando sesion.\n";
 }
