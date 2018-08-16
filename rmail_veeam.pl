@@ -3,7 +3,7 @@
 # Modulo         : rmail1.pl   
 # Version		 : 0.1 para IMAP
 # Objetivo       : Leer correos de Veeam B&R
-# Autor          : J.Trumper S.
+# Autor          : J.T.S.
 # Fecha          : 25-Abril-2018
 # Modificaciones : Falta tema password de la cuenta 
 
