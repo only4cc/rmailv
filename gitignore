@@ -1,3 +1,4 @@
-.git
-.vscode
+.git/
+.vscode/
 out/
+Command Prompt.lnk
