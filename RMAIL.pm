@@ -68,12 +68,14 @@ sub revisa {
         print "Revisando ...";
         ++$c;
         if($imap->seen($i)){
+=begin
             print " *\t"; # Ya fue revisado
             $cc = "-"  if ( $c % 4 == 0 );
             $cc = "\\" if ( $c % 4 == 1 );
             $cc = "|"  if ( $c % 4 == 2 );
             $cc = "/"  if ( $c % 4 == 3 );
             print "$cc\n";
+=cut
         } else {
             my $es = Email::Simple->new(join '', @{ $imap->top($i) } );
             printf("[%03d] %s\n", $i, $es->header('Subject'));
@@ -102,8 +104,7 @@ sub revisa {
                 # Parse del mensaje
                 my $parser = MIME::Parser->new();
                 $parser->output_to_core(1);      # Para no escribir attachments a disco
-                my $message2  = $parser->parse_data($message);
-                #print Dumper $message2;
+                my $message2  = $parser->parse_data($message);  #print Dumper $message2;
                 my $body = $message2->{ME_Bodyhandle}->{MBS_Data}."\n";
 
                 my $dom = Mojo::DOM->new($body);

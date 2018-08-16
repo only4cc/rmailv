@@ -45,8 +45,12 @@ sub exec_cmd {
         my $select = $command;
         $sesion->revisa();
     }
-    elsif ( lc ( $command) =~ /help/) {
+    elsif ( lc ( $command) =~ /(h|help)/) {
         help();
+        return;
+    }
+    elsif ( lc ( $command) =~ /desc/) {
+        desc();
         return;
     }
     else {
@@ -62,4 +66,10 @@ sub help {
     print "conecta\tdesconecta\n";
     print "usef <foldername>\n";
     print "select ... \n";
+    print "desc\n";
+}
+
+sub desc {
+    print "mail\n";
+    print "from, to, date, subject, body\n";
 }
